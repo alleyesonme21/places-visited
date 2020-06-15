@@ -1,18 +1,39 @@
-function PlacesVisited() {
-  this.placesVisited = [];
+
+
+
+// UI Logic
+
+$(document).ready(function() {
+  $("form#new-places-visited").submit(function(event) {
+    event.preventDefault();
+    const inputtedLocation = $("input#new-location").val();
+    const inputtedFavoriteLandmark = $("input#new-favoriteLandmark").val();
+    const inputtedSeason = $("input#new-season").val();
+    let placesVisited = new PlacesVisited();
+    let newLocale = new Locale(inputtedLocation, inputtedFavoriteLandmark, inputtedSeason);
+    placesVisited.addlocales(newLocale);
+    $("#")
+    console.log(placesVisited.locales);
+  })
+})
+
+
+//Business Logic
+function PlacesVisited(){
+  this.locales = [];
   this.currentId = 0;
 }
 
-PlacesVisited.prototype.addPlacesVisited = function(id) {
-  placesVisited.id = this.assignId();
-  this.placesVisited.push(placesVisited);
+PlacesVisited.prototype.addlocales = function(locale) {
+  locale.id = this.assignId();
+  this.locales.push(locale);
 }
 
-PlacesVisited.prototype.deletePlacesVisited = function(id) {
-  for (let i=0; i< this.placesVisited.length; i ++) {
-    if (this.placesVisited[i]) {
-      if (this.placesVisited[i].id == id) {
-        delete this.placesVisited[i];
+PlacesVisited.prototype.deletelocales = function(id) {
+  for (let i=0; i< this.locales.length; i ++) {
+    if (this.locales[i]) {
+      if (this.locales[i].id == id) {
+        delete this.locales[i];
         return true;
       }
     }
@@ -25,23 +46,23 @@ PlacesVisited.prototype.assignId = function() {
   return this.currentId;
 }
 
-PlacesVisited.prototype.findPlacesVisited = function(id) {
-  for (let i=0; i<this.placesVisited.length; i++) {
-    if (this.placesVisited[i]) {
-      if (this.placesVisited[i].id == id) {
-        return this.placesVisited[i];
+PlacesVisited.prototype.findlocales = function(id) {
+  for (let i=0; i<this.locales.length; i++) {
+    if (this.locales[i]) {
+      if (this.locales[i].id == id) {
+        return this.locales[i];
       }
     }
   };
   return false;
 }
 
-function PlacesVisited(location, favoriteLandmark, season) {
+function Locale(location, favoriteLandmark, season) {
   this.location = location;
   this.favoriteLandmark = favoriteLandmark;
   this.season = season;
 }
 
-PlacesVisited.myFavoritePlaces = function() {
+Locale.myFavoritePlaces = function() {
   return "I visited" + " " + this.location  + " " + "and saw" + " " + this.favoriteLandmark + " " + "during the" + " " + this.season;
 }
