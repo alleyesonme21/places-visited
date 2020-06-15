@@ -12,8 +12,10 @@ $(document).ready(function() {
     let placesVisited = new PlacesVisited();
     let newLocale = new Locale(inputtedLocation, inputtedFavoriteLandmark, inputtedSeason);
     placesVisited.addlocales(newLocale);
-    $("#")
-    console.log(placesVisited.locales);
+    $(".location").text(inputtedLocation);
+    $(".favoriteLandmark").text(inputtedFavoriteLandmark);
+    $(".season").text(inputtedSeason);
+    $("#show-placesVisited").show();
   })
 })
 
